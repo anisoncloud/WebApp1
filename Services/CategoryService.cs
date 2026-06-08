@@ -7,10 +7,10 @@ namespace WebApplication1.Services
 {
     public class CategoryService : ICategoryService
     {
-        private readonly IUnitOfWrk _uow;
+        private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
 
-        public CategoryService(IUnitOfWrk uow, IMapper mapper)
+        public CategoryService(IUnitOfWork uow, IMapper mapper)
         {
             _uow = uow;
             _mapper = mapper;

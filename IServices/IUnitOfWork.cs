@@ -3,10 +3,10 @@ using WebApplication1.Models;
 
 namespace WebApplication1.IServices
 {
-    public interface IUnitOfWrk : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         IRepository<Category> Categories { get; }
-        IRepository<Product> Products { get; }
+        //IRepository<Product> Products { get; }
         Task<int> CommitAsync();
         Task RollBackAsync();
     }

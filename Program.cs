@@ -17,7 +17,8 @@ options.UseSqlServer(connectionStrings));
 builder.Services.AddAutoMapper(cfg =>
        cfg.AddProfile<MappingProfile>()
 );
-builder.Services.AddScoped<IUnitOfWrk, IUnitOfWrk>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+//builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
