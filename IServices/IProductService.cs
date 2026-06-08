@@ -1,6 +1,10 @@
-﻿namespace WebApplication1.IServices
+﻿using WebApplication1.Dto;
+
+namespace WebApplication1.IServices
 {
-    public class IProductService
+    public interface IProductService
     {
+        Task<ProductDto> CreateProductAsync(CreateProductDto dto);
+        Task<IEnumerable<ProductDto>> GetAllProductAsync();
     }
 }

@@ -1,11 +1,24 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
+using WebApplication1.Dto;
+using WebApplication1.IServices;
+using WebApplication1.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionStrings = builder.Configuration.GetConnectionString("WebApp1Connection");
 
+//Database connection
+var connectionStrings = builder.Configuration.GetConnectionString("WebApp1Connection");
 builder.Services.AddDbContext<AppDbContext>(options=>
 options.UseSqlServer(connectionStrings));
+
+// Auto Mapper
+
+builder.Services.AddAutoMapper(cfg =>
+       cfg.AddProfile<MappingProfile>()
+);
+builder.Services.AddScoped<IUnitOfWrk, IUnitOfWrk>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
