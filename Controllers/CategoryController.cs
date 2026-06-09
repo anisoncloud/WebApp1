@@ -22,5 +22,11 @@ namespace WebApplication1.Controllers
         {
             return View(new CreateCategoryDto());
         }
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(CreateCategoryDto dto)
+        {
+            await _categoryService.CreateCategoryAsync(dto);
+            return RedirectToAction("Index");
+        }
     }
 }
