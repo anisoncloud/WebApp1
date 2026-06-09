@@ -6,7 +6,7 @@ namespace WebApplication1.IServices
     public interface IUnitOfWork : IDisposable
     {
         IRepository<Category> Categories { get; }
-        //IRepository<Product> Products { get; }
+        IRepository<Product> Products { get; }
         Task<int> CommitAsync();
         Task RollBackAsync();
     }
