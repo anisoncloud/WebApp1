@@ -25,9 +25,10 @@ namespace WebApplication1.Services
 
         }
 
-        public Task<IEnumerable<CategoryDto>> GetAllCategoriesAsync()
+        public async Task<IEnumerable<CategoryDto>> GetAllCategoriesAsync()
         {
-            throw new NotImplementedException();
+            var categories = await _uow.Categories.GetAllAsync();
+            return _mapper.Map<IEnumerable<CategoryDto>>(categories);
         }
     }
 }

@@ -31,6 +31,7 @@ namespace WebApplication1.Services
             }
             await _uow.Products.AddAsync(product);
             await _uow.CommitAsync();
+            return _mapper.Map<ProductDto>(product);
         }
 
         public Task<IEnumerable<ProductDto>> GetAllProductAsync()

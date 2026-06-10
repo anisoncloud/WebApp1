@@ -31,9 +31,9 @@ namespace WebApplication1.Repository
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _dbSet.OrderByDescending(x => x.Id).ToListAsync();
         }
 
         public Task<T?> GetByIdAsync(int id)
