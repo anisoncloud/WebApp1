@@ -34,9 +34,10 @@ namespace WebApplication1.Services
             return _mapper.Map<ProductDto>(product);
         }
 
-        public Task<IEnumerable<ProductDto>> GetAllProductAsync()
+        public async Task<IEnumerable<ProductDto>> GetAllProductAsync()
         {
-            throw new NotImplementedException();
+            var products =  await _uow.Products.GetAllAsync();
+            return _mapper.Map<IEnumerable<ProductDto>>(products);
         }
     }
 }

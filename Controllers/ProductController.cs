@@ -14,9 +14,10 @@ namespace WebApplication1.Controllers
             _productService = productService;
             _categoryService = categoryService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var products = await _productService.GetAllProductAsync();
+            return View(products);
         }
         [HttpGet]
         public async Task<IActionResult> Create()
@@ -27,7 +28,9 @@ namespace WebApplication1.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateProductDto dto)
         {
-
+            await _productService.CreateProductAsync(dto);
+            TempData["success"] = "Product Addd Successfully";
+            return RedirectToAction("Index");
         }
         
     }
