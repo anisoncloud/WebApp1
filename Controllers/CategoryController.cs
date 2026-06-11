@@ -29,5 +29,17 @@ namespace WebApplication1.Controllers
             await _categoryService.CreateCategoryAsync(dto);
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var category = await _categoryService.GetCategoryByIdAsync(id);
+            return View(category);
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, UpdateCategoryDto dto)
+        {
+            await _categoryService.UpdateCategoryAsync(id, dto);
+            return RedirectToAction("Index");
+        }
     }
 }

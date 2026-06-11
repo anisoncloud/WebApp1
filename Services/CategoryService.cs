@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Dto;
 using WebApplication1.IServices;
 using WebApplication1.Models;
@@ -30,5 +31,21 @@ namespace WebApplication1.Services
             var categories = await _uow.Categories.GetAllAsync();
             return _mapper.Map<IEnumerable<CategoryDto>>(categories);
         }
+        public async Task<CategoryDto> GetCategoryByIdAsync(int id)
+        {
+            var product = await _uow.Categories.GetByIdAsync(id);
+            return _mapper.Map<CategoryDto>(product);
+        }
+
+        public async Task<CategoryDto> UpdateCategoryAsync(int id, UpdateCategoryDto dto)
+        {
+            var category = await _uow.Categories.GetByIdAsync(id);
+            category.Name = dto.Name;
+            category.Description = dto.Description;
+            await _uow.Categories.UpdateAsync(category);
+            await _uow.CommitAsync();
+            return _mapper.Map<CategoryDto>(category);
+        }
+
     }
 }

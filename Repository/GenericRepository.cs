@@ -36,9 +36,9 @@ namespace WebApplication1.Repository
             return await _dbSet.OrderByDescending(x => x.Id).ToListAsync();
         }
 
-        public Task<T?> GetByIdAsync(int id)
+        public virtual async Task<T?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public Task UpdateAsync(T entity)

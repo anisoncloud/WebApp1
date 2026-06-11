@@ -1,0 +1,8 @@
+﻿namespace WebApplication1.Dto
+{
+    public class UpdateCategoryDto
+    {
+        public string Name { get; set; } = default!;
+        public string? Description { get; set; }
+    }
+}
