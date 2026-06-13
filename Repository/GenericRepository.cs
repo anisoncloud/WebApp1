@@ -41,9 +41,10 @@ namespace WebApplication1.Repository
             return await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task UpdateAsync(T entity)
+        public virtual async Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            entity.UpdatedAt = DateTime.UtcNow;
+            _dbSet.Update(entity);
         }
     }
 }

@@ -11,7 +11,9 @@ namespace WebApplication1.Dto
             CreateMap<Product, ProductDto>();
             CreateMap<CreateCategoryDto, Category>()
                 .ForMember(x => x.ProductCategories, o => o.Ignore());
-            CreateMap<Category, CategoryDto>();
+            CreateMap<Category, CategoryDto>()
+                .ForMember(x=>x.CreatedAt, o=>o.MapFrom(p=>p.CreatedAt))
+                .ForMember(x=>x.UpdatedAt, o=>o.MapFrom(p=>p.UpdatedAt));
         }
     }
 }
